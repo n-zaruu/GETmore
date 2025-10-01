@@ -72,7 +72,6 @@ function showInitialTargetModal() {
   if (modal) {
     modal.style.display = 'flex';
     document.body.classList.add('modal-open');
-    // Pre-fill name if it exists
     const userNameInput = document.getElementById('user-name');
     if (userNameInput && userName) {
       userNameInput.value = userName;
@@ -112,14 +111,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (hamburger && navbarMenuHeader) {
     hamburger.addEventListener('click', () => {
       navbarMenuHeader.classList.toggle('active');
-      // Pre-fill edit target dropdown
       const editTargetAmount = document.getElementById('edit-target-amount');
       if (editTargetAmount && dailyTargetUSD) {
         editTargetAmount.value = dailyTargetUSD;
       }
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (!navbarMenuHeader.contains(e.target) && !hamburger.contains(e.target)) {
         navbarMenuHeader.classList.remove('active');
@@ -127,41 +124,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Handle edit target form submission
   const editTargetForm = document.getElementById('edit-target-form');
   if (editTargetForm) {
     editTargetForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       dailyTargetUSD = parseInt(document.getElementById('edit-target-amount').value);
       localStorage.setItem('dailyTargetUSD', dailyTargetUSD);
-      // Update dropdown in progress-circle to reflect selection
       const targetAmountSelect = document.getElementById('target-amount');
       if (targetAmountSelect) targetAmountSelect.value = dailyTargetUSD;
-      // Re-fetch exchange rate
       exchangeRate = await fetchExchangeRate();
-      // Close the dropdown
       navbarMenuHeader.classList.remove('active');
       updateBalanceAndTarget();
       updateChartData();
     });
   }
 
-  // Handle initial target form submission
   const initialTargetForm = document.getElementById('initial-target-form');
   if (initialTargetForm) {
     initialTargetForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       userName = document.getElementById('user-name').value.trim();
       dailyTargetUSD = parseInt(document.getElementById('initial-target-amount').value);
-      // Set startDate to current date when name is entered
       startDate = DateTime.now().setZone(userTimezone);
       localStorage.setItem('userName', userName);
       localStorage.setItem('dailyTargetUSD', dailyTargetUSD);
       localStorage.setItem('startDate', startDate.toISODate());
-      // Update dropdown in progress-circle to reflect selection
       const targetAmountSelect = document.getElementById('target-amount');
       if (targetAmountSelect) targetAmountSelect.value = dailyTargetUSD;
-      // Re-fetch exchange rate
       exchangeRate = await fetchExchangeRate();
       updateUserNameDisplay();
       hideInitialTargetModal();
@@ -170,7 +159,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Close dropdown on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navbarMenuHeader.classList.contains('active')) {
       navbarMenuHeader.classList.remove('active');
@@ -215,8 +203,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const overallBalance = getOverallBalance();
     if (circleText) circleText.textContent = `Rp${formatter.format(overallBalance)}`;
     setProgress(dailyTotal, dailyTarget);
+    // Only update target element if selected date is today
+    const today = DateTime.now().setZone(userTimezone).toISODate();
     const targetElement = document.getElementById('target');
-    if (targetElement) targetElement.textContent = `Target for ${selectedDate}: Rp${formatter.format(dailyTarget)}`;
+    if (targetElement && selectedDate === today) {
+      targetElement.textContent = `Target for ${today}: Rp${formatter.format(dailyTarget)}`;
+    }
   }
 
   function initChart() {
@@ -300,7 +292,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('currentWeekBtn').classList.toggle('hidden', currentWeekStart.toISODate() === DateTime.now().setZone(userTimezone).startOf('week').toISODate());
   }
 
-  // Initialize target amount dropdown
   const targetAmountSelect = document.getElementById('target-amount');
   if (targetAmountSelect && dailyTargetUSD) {
     targetAmountSelect.value = dailyTargetUSD;
@@ -339,7 +330,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Listen for storage changes to update progress when transactions change
   window.addEventListener('storage', () => {
     updateBalanceAndTarget();
     updateChartData();
