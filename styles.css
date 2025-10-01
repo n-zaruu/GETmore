@@ -1020,10 +1020,10 @@ body.modal-open {
     justify-content: center;
     align-items: center;
     gap: 14px;
-    width: 770px;
-    max-width: 770px; /* Keep buttons compact */
+    width: 772px;
+    max-width: 772px; /* Keep buttons compact */
     margin-bottom: 20px; /* Space between view-selector and transaction-summary */
-    margin-left: -7px;
+    margin-left: -6px;
     margin-right: 7px;
 }
 
@@ -1049,7 +1049,7 @@ body.modal-open {
 
 #transaction-summary {
     background: #222;
-    width: 770px;
+    width: 772px;
     padding: 10px;
     color: #f4f4f9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
@@ -1057,7 +1057,7 @@ body.modal-open {
     display: flex;
     justify-content: center;
     margin-top: -12px;
-    margin-left: -7px;
+    margin-left: -6px;
     margin-right: 7px;
 }
 
