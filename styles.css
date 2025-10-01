@@ -1024,7 +1024,7 @@ body.modal-open {
     max-width: 772px; /* Keep buttons compact */
     margin-bottom: 20px; /* Space between view-selector and transaction-summary */
     margin-left: -6px;
-    margin-right: 7px;
+    margin-right: 6px;
 }
 
 .view-btn {
@@ -1058,7 +1058,7 @@ body.modal-open {
     justify-content: center;
     margin-top: -12px;
     margin-left: -6px;
-    margin-right: 7px;
+    margin-right: 6px;
 }
 
 #transaction-summary .period-summary {
