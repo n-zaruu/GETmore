@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=portrait">
+    <title>GET more</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <!-- Initial Target Selection Modal -->
+    <div class="modal" id="initial-target-modal">
+        <div class="modal-content">
+            <h2>Set Your Profile</h2>
+            <p>Enter your name and select a daily target amount in USD (1–10 USD). It will be converted to IDR for tracking.</p>
+            <form id="initial-target-form">
+                <input type="text" id="user-name" placeholder="Enter your name..." aria-label="User name" required>
+                <select id="initial-target-amount" aria-label="Daily target amount">
+                    <option value="1">1 USD</option>
+                    <option value="2">2 USD</option>
+                    <option value="3">3 USD</option>
+                    <option value="4">4 USD</option>
+                    <option value="5">5 USD</option>
+                    <option value="6">6 USD</option>
+                    <option value="7">7 USD</option>
+                    <option value="8">8 USD</option>
+                    <option value="9">9 USD</option>
+                    <option value="10">10 USD</option>
+                </select>
+                <button type="submit" id="initial-target-submit">Set Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="navbar-header">
+        <div class="navbar-logo">
+            <span id="user-name-display">Welcome</span> <!-- Placeholder for name -->
+        </div>
+        <div class="header-content">
+            <button class="hamburger" aria-label="Open menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <nav class="navbar-menu-header">
+                <form id="edit-target-form">
+                    <h2>Edit Daily Target</h2>
+                    <p>Choose a new daily target amount in USD (1–10 USD).</p>
+                    <select id="edit-target-amount" aria-label="Daily target amount">
+                        <option value="1">1 USD</option>
+                        <option value="2">2 USD</option>
+                        <option value="3">3 USD</option>
+                        <option value="4">4 USD</option>
+                        <option value="5">5 USD</option>
+                        <option value="6">6 USD</option>
+                        <option value="7">7 USD</option>
+                        <option value="8">8 USD</option>
+                        <option value="9">9 USD</option>
+                        <option value="10">10 USD</option>
+                    </select>
+                    <button type="submit" id="edit-target-submit">Save Target</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Rest of the HTML remains unchanged -->
+    <section class="progress-circle">
+        <div class="circle-container">
+            <div id="current-date"></div>
+            <div class="target" id="target">Target for today: Rp0,00</div>
+            <svg width="200" height="200">
+                <circle class="progress-ring__circle" cx="100" cy="100" r="90"></circle>
+            </svg>
+            <div class="circle-text" id="circle-text">Rp0,00</div>
+        </div>
+    </section>
+
+    <section class="line-chart">
+        <div class="chart-container">
+            <canvas id="weeklyChart"></canvas>
+            <div class="chart-nav">
+                <button id="currentWeekBtn" aria-label="Back to current week">Back</button>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="navbar-footer">
+        <nav class="navbar-menu">
+            <a href="index.html" class="nav-link active">
+                <div class="nav-item">
+                    <span class="icon-container">
+                        <span class="material-symbols-outlined">trending_up</span>
+                    </span>
+                    <span>Progress</span>
+                </div>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <div class="nav-item">
+                    <span class="icon-container">
+                        <span class="material-symbols-outlined">list</span>
+                    </span>
+                    <span>Transactions</span>
+                </div>
+            </a>
+        </nav>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script src="progress.js"></script>
+</body>
+</html>
