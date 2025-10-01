@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=portrait">
+    <title>GET more</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+<header class="navbar-header-transactions">
+    <div class="navbar-logo">
+        <!-- Logo content if any -->
+    </div>
+    <div class="header-content-transactions">
+        <div class="view-selector">
+            <button class="view-btn active" data-view="daily">Daily</button>
+            <button class="view-btn" data-view="monthly">Monthly</button>
+            <button class="view-btn" data-view="yearly">Yearly</button>
+        </div>
+        <div id="transaction-summary"></div>
+    </div>
+</header>
+
+    <section class="transaction-tracker">
+        <div id="transaction-summary"></div>
+        <div id="transaction-list"></div>
+        <button class="add-btn" aria-label="Add new transaction">
+            <span class="material-symbols-outlined">add_2</span>
+        </button>
+
+        <div class="modal" id="transaction-modal">
+            <div class="modal-content">
+                <span class="close-btn" aria-label="Close transaction form">&times;</span>
+                <h2 id="modal-title">Transaction</h2>
+                <form id="transaction-form">
+                    <input type="text" id="description" placeholder="Enter description..." aria-label="Transaction description">
+                    <input type="number" id="amount" placeholder="Enter amount..." step="0.01" aria-label="Transaction amount">
+                    <select id="type" aria-label="Transaction type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <input type="date" id="date" aria-label="Transaction date">
+                    <input type="hidden" id="edit-index" value="-1">
+                    <button type="submit" id="form-submit-btn">Transaction</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="navbar-footer">
+        <nav class="navbar-menu">
+            <a href="index.html" class="nav-link">
+                <div class="nav-item">
+                    <span class="icon-container">
+                        <span class="material-symbols-outlined">trending_up</span>
+                    </span>
+                    <span>Progress</span>
+                </div>
+            </a>
+            <a href="transactions.html" class="nav-link active">
+                <div class="nav-item">
+                    <span class="icon-container">
+                        <span class="material-symbols-outlined">list</span>
+                    </span>
+                    <span>Transactions</span>
+                </div>
+            </a>
+        </nav>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
+    <script src="script.js"></script>
+    <script src="transactions.js"></script>
+</body>
+</html>
